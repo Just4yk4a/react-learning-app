@@ -1,11 +1,21 @@
 import * as React from "react";
+import {Table} from "react-bootstrap";
 import {connect} from "react-redux";
 import {loadInfo} from "../../actions/CarsHugeActions";
+import Row from "../../components/Row";
+import {ICarsHuge} from "../../reducers/CarsHugeReducer";
+import {getData} from "../../selectors";
+
+interface ICar {
+    id: string,
+    vin: string,
+    brand: string
+    year: number,
+    color: string,
+}
 
 interface IProps {
-    page: number;
-    isFetching: boolean;
-    data: [];
+    carsHuge: ICarsHuge;
 
     nextPageAction(page: number): void;
 }
@@ -17,24 +27,42 @@ class Cars extends React.Component<IProps, {}> {
     }
 
     public onClickHandler() {
-        this.props.nextPageAction(this.props.page + 1);
+        this.props.nextPageAction(this.props.carsHuge.page + 1);
     }
+
+    public renderTemplate = () => {
+        return this.props.carsHuge.data.length;
+    };
 
     public render() {
         return (
             <div>
-                {this.props.isFetching ? <p>Загрузка...</p> : <p>Мы на {this.props.page} странице.</p>}
-                <br/>
-                <button onClick={this.onClickHandler}>NEXT PAGE</button>
+                <div>
+                    <Table>
+                        <tbody>
+                        <tr>
+                            <th>vin</th>
+                            <th>brand</th>
+                            <th>year</th>
+                            <th>color</th>
+                        </tr>
+                        {this.props.carsHuge.data.map( (car: ICar) => <Row key={car.vin} car={car}/>)}
+                        </tbody>
+                    </Table>
+                </div>
+                <div>
+                    {this.props.carsHuge.isFetching ? <p>Загрузка...</p> :
+                        <p>Мы на {this.props.carsHuge.page} странице.</p>}
+                    <br/>
+                    <button onClick={this.onClickHandler}>NEXT PAGE</button>
+                </div>
             </div>
         );
     }
 }
 
 const mapStateToProps = (store: any) => ({
-    data: store.carsHuge.data,
-    isFetching: store.carsHuge.isFetching,
-    page: store.carsHuge.page
+    carsHuge: getData(store)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

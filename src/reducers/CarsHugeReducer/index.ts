@@ -1,10 +1,16 @@
-const initialState = {
+export interface ICarsHuge {
+    data: [];
+    isFetching: boolean;
+    page: number;
+}
+
+const createInitialSate = (): ICarsHuge => ({
     data: [],
     isFetching: false,
     page: 4
-};
+});
 
-export function carsHugeReducer(state = initialState, action: any) {
+export const carsHugeReducer = (state = createInitialSate(), action: any) => {
     switch (action.type) {
         case "NEXT_PAGE": {
             return {...state, page: action.payload}
@@ -17,4 +23,4 @@ export function carsHugeReducer(state = initialState, action: any) {
         }
     }
     return state;
-}
+};

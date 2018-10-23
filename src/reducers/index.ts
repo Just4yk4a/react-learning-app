@@ -1,6 +1,10 @@
 import {combineReducers} from "redux";
-import {carsHugeReducer} from "./CarsHugeReducer";
+import {carsHugeReducer, ICarsHuge} from "./CarsHugeReducer";
 
-export const rootReducer = combineReducers({
+export interface IRootReducer {
+    carsHuge: ICarsHuge
+};
+
+export const rootReducer = combineReducers<IRootReducer>({
     carsHuge: carsHugeReducer
 });

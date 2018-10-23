@@ -10,6 +10,7 @@ function* fetchDataAsync() {
         const data = yield call(() => {
             return fetch('http://127.0.0.1:8000/cars-huge?page=' + 4 + '&limit=20')
                 .then(response => response.json())
+                .then(result => result.data)
         });
         yield put(requestDataSuccess(data));
     }
