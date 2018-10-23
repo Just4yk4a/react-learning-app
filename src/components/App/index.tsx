@@ -2,7 +2,7 @@ import * as  React from "react";
 import {Redirect, Route, Switch} from "react-router";
 
 import {CarsHuge} from "../../containers/CarsHuge";
-import {Header} from "../Header/index";
+import {Header} from "../Header";
 import List from "../List/index";
 
 export const App = () => (
