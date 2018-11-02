@@ -1,9 +1,9 @@
 import * as  React from "react";
 import {Redirect, Route, Switch} from "react-router";
 
-import {CarsHuge} from "../../containers/CarsHuge";
-import {Header} from "../Header";
-import List from "../List/index";
+import {CarsHuge} from "../CarsHuge";
+import {Header} from "./header";
+import List from "./list";
 
 export const App = () => (
     <div>
@@ -14,7 +14,8 @@ export const App = () => (
             <Route path='*' component={redirect}/>
         </Switch>
     </div>
-)
-    function redirect() {
-        return <Redirect to={{pathname: '/list'}}/>;
-    };
+);
+
+function redirect() {
+    return <Redirect to={{pathname: '/list'}}/>;
+}

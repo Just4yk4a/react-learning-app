@@ -6,7 +6,7 @@ export interface ICarsHuge {
     error: string;
 }
 
-const createInitialSate = (): ICarsHuge => ({
+export const createInitialSate = (): ICarsHuge => ({
     countPage: 0,
     data: [],
     error: "",
@@ -16,9 +16,6 @@ const createInitialSate = (): ICarsHuge => ({
 
 export const carsHugeReducer = (state = createInitialSate(), action: any) => {
     switch (action.type) {
-        case "NEXT_PAGE": {
-            return {...state, page: action.payload}
-        }
         case "GET_DATA_REQUEST": {
             return {...state, page: action.payload, isFetching: true}
         }
@@ -28,6 +25,8 @@ export const carsHugeReducer = (state = createInitialSate(), action: any) => {
         case "GET_DATA_ERROR": {
             return {...state, error: action.payload, isFetching: false}
         }
+        default:{
+            return state;
+        }
     }
-    return state;
 };

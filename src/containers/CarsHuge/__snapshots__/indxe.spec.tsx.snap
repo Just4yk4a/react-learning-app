@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Row component Row 1`] = `
+<tr>
+  <td>
+    123
+  </td>
+  <td>
+    VOLVO
+  </td>
+  <td>
+    1990
+  </td>
+  <td>
+    RED
+  </td>
+</tr>
+`;

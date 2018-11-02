@@ -2,12 +2,13 @@ import * as React from "react";
 import {Table} from "react-bootstrap";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {loadInfo} from "../../actions/CarsHugeActions";
-import Row from "../../components/Row";
-import {ICarsHuge} from "../../reducers/CarsHugeReducer";
-import {getData} from "../../selectors";
 
-interface ICar {
+import {loadInfo} from "../../store/CarsHuge/actions";
+import {ICarsHuge} from "../../store/CarsHuge/reducers";
+import {getData} from "../../store/CarsHuge/selectors";
+import Row from "./row";
+
+export interface ICar {
     id: string,
     vin: string,
     brand: string
@@ -15,7 +16,7 @@ interface ICar {
     color: string,
 }
 
-interface IProps {
+export interface IProps {
     carsHuge: ICarsHuge;
 
     loadPage(page: number): void;
@@ -78,7 +79,7 @@ class Cars extends React.Component<IProps, {}> {
                     <button onClick={this.backPageHandler}>BACK PAGE</button>
                     <button onClick={this.nextPageHandler}>NEXT PAGE</button>
                     <br/>
-                    <input type="text" onChange={this.changeHandler}/>
+                    <input type="text" onChange={this.changeHandler} placeholder={page.toString()}/>
                     <button onClick={this.currentPageHandler}>GO</button>
                 </div>
             </div>
