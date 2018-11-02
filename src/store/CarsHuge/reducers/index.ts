@@ -14,6 +14,8 @@ export const createInitialSate = (): ICarsHuge => ({
     page: 0
 });
 
+
+
 export const carsHugeReducer = (state = createInitialSate(), action: any) => {
     switch (action.type) {
         case "GET_DATA_REQUEST": {
